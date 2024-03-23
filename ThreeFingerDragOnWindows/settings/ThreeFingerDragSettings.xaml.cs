@@ -1,15 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Windows.System;
 using Microsoft.UI.Xaml;
 
 namespace ThreeFingerDragOnWindows.settings;
 
+public class KeyEntry
+{
+    public string Name { get; set; }
+    public SettingsData.Key Value { get; set; }
+}
+
 public sealed partial class ThreeFingerDragSettings : INotifyPropertyChanged
 {
     public ThreeFingerDragSettings()
     {
         InitializeComponent();
+
+        var keys = new List<KeyEntry>();
+        keys.Add(new KeyEntry { Name = "Left", Value = SettingsData.Key.LEFT });
+        keys.Add(new KeyEntry { Name = "Right", Value = SettingsData.Key.RIGHT });
+        keys.Add(new KeyEntry { Name = "Middle", Value = SettingsData.Key.MIDDLE });
+        KeyBox.ItemsSource = keys;
     }
 
 
@@ -61,6 +74,12 @@ public sealed partial class ThreeFingerDragSettings : INotifyPropertyChanged
                 OnPropertyChanged(nameof(CursorAccelerationProperty));
             }
         }
+    }
+
+    public SettingsData.Key KeyToEmulate
+    {
+        get => App.SettingsData.KeyToEmulate;
+        set => App.SettingsData.KeyToEmulate = value;
     }
 
 

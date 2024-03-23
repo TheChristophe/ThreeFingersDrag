@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using ThreeFingerDragEngine.utils;
+using ThreeFingerDragOnWindows.settings;
 using ThreeFingerDragOnWindows.utils;
 
 namespace ThreeFingerDragOnWindows.threefingerdrag;
@@ -31,8 +32,7 @@ public class ThreeFingerDrag
 
         var (_, longestDistDelta, longestDist2D) =
             _distanceManager.GetLongestDist2D(oldContacts, contacts, hasFingersReleased);
-        (var fingersCount, var shortDelayMovingFingersCount, var longDelayMovingFingersCount,
-                var originalFingersCount) =
+        var (fingersCount, shortDelayMovingFingersCount, longDelayMovingFingersCount, originalFingersCount) =
             _fingerCounter.CountMovingFingers(contacts, areContactsIdsCommons, longestDist2D, hasFingersReleased);
 
         Debug.WriteLine("    fingers: " + fingersCount + ", original: " + originalFingersCount + ", moving: " +
@@ -44,7 +44,18 @@ public class ThreeFingerDrag
             // Start dragging
             _isDragging = true;
             Debug.WriteLine("    START DRAG, Left click down");
-            MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_LEFTDOWN);
+            switch (App.SettingsData.KeyToEmulate)
+            {
+                case SettingsData.Key.LEFT:
+                    MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_LEFTDOWN);
+                    break;
+                case SettingsData.Key.RIGHT:
+                    MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_RIGHTDOWN);
+                    break;
+                case SettingsData.Key.MIDDLE:
+                    MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_MIDDLEDOWN);
+                    break;
+            }
         }
         else if ((shortDelayMovingFingersCount < 2 || (originalFingersCount != 3 && originalFingersCount >= 2)) &&
                  _isDragging)
@@ -83,7 +94,18 @@ public class ThreeFingerDrag
     private void StopDrag()
     {
         _isDragging = false;
-        MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_LEFTUP);
+        switch (App.SettingsData.KeyToEmulate)
+        {
+            case SettingsData.Key.LEFT:
+                MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_LEFTUP);
+                break;
+            case SettingsData.Key.RIGHT:
+                MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_RIGHTUP);
+                break;
+            case SettingsData.Key.MIDDLE:
+                MouseOperations.MouseClick(MouseOperations.MOUSEEVENTF_MIDDLEUP);
+                break;
+        }
     }
 
     private int GetReleaseDelay()

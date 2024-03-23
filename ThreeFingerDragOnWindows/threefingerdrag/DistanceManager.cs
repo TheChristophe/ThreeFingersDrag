@@ -9,10 +9,11 @@ namespace ThreeFingerDragOnWindows.threefingerdrag;
 
 public class DistanceManager
 {
+    private readonly List<int> _trustedContacts = new();
+
     // List of contacts that exists but that can't be used for the distance calculation yet.
     // There is a delay of RELEASE_FINGERS_THRESHOLD_MS before they can affect the distance.
     private Dictionary<int, long> _quarantineContacts = new();
-    private readonly List<int> _trustedContacts = new();
 
     /// <summary>
     ///     Find the longest distance between two TouchpadContact of same ID.

@@ -8,6 +8,12 @@ namespace ThreeFingerDragOnWindows.settings;
 
 public class SettingsData
 {
+    public enum Key
+    {
+        LEFT,
+        RIGHT,
+        MIDDLE
+    }
     // Other settings
 
     public enum StartupActionType
@@ -43,6 +49,8 @@ public class SettingsData
     public StartupActionType StartupAction { get; set; } = StartupActionType.NONE;
 
     public bool RunElevated { get; set; } = false;
+
+    public Key KeyToEmulate { get; set; } = Key.LEFT;
 
 
     public static SettingsData load()

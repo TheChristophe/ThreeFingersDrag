@@ -12,10 +12,10 @@ public class ContactsManager
 {
     private readonly IntPtr _hwnd;
     private readonly List<TouchpadContact> _lastContacts = new();
+    private readonly IntPtr _oldWndProc;
     private readonly HandlerWindow _source;
 
     private long _lastInput;
-    private readonly IntPtr _oldWndProc;
 
     public ContactsManager(HandlerWindow source)
     {

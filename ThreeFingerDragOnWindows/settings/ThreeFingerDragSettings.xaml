@@ -136,6 +136,18 @@
 
             </wuc:SettingsExpander>
 
+
+            <wuc:SettingsCard
+                Description="Select which mouse key should be emulated"
+                Header="Key to emulate">
+                <ComboBox
+                    Name="KeyBox"
+                    IsEditable="True"
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="Value"
+                    SelectedValue="{x:Bind KeyToEmulate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </wuc:SettingsCard>
+
         </StackPanel>
     </ScrollView>
 

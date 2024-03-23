@@ -17,7 +17,7 @@ public class Program
     {
         ComWrappersSupport.InitializeComWrappers();
 
-        (var existingInstance, var existingInstanceIsAdmin) = FindExistingInstance();
+        var (existingInstance, existingInstanceIsAdmin) = FindExistingInstance();
 
         if (existingInstance != null)
         {
