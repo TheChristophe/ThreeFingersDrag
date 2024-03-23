@@ -2,21 +2,24 @@
 
 namespace ThreeFingerDragOnWindows.utils;
 
-public struct PointUtils {
-    
+public struct PointUtils
+{
 }
 
 public struct Point
 {
-    public bool Equals(Point other){
+    public bool Equals(Point other)
+    {
         return x.Equals(other.x) && y.Equals(other.y);
     }
 
-    public override bool Equals(object obj){
+    public override bool Equals(object obj)
+    {
         return obj is Point other && Equals(other);
     }
 
-    public override int GetHashCode(){
+    public override int GetHashCode()
+    {
         return HashCode.Combine(x, y);
     }
 
@@ -28,13 +31,14 @@ public struct Point
         this.x = x;
         this.y = y;
     }
+
     public Point(IntMousePoint point)
     {
-        this.x = point.x;
-        this.y = point.y;
+        x = point.x;
+        y = point.y;
     }
 
-    public static Point Zero{ get; } = new(0, 0);
+    public static Point Zero { get; } = new(0, 0);
 
     public void Multiply(float multiplicator)
     {
@@ -51,6 +55,7 @@ public struct Point
     {
         return (float)Math.Sqrt(Math.Pow(x - point.x, 2) + Math.Pow(y - point.y, 2));
     }
+
     public float DistTo(IntMousePoint point)
     {
         return (float)Math.Sqrt(Math.Pow(x - point.x, 2) + Math.Pow(y - point.y, 2));
@@ -62,6 +67,7 @@ public struct Point
     {
         return a.x == b.x && a.y == b.y;
     }
+
     public static bool operator !=(Point a, Point b)
     {
         return a.x != b.x || a.y != b.y;

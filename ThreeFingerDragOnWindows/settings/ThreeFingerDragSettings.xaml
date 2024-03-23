@@ -30,29 +30,29 @@
                 IsExpanded="False"
                 HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEA37;}">
                 <HyperlinkButton Content="Go to Settings"
-                        Click="OpenSettings"/>
+                                 Click="OpenSettings" />
                 <wuc:SettingsExpander.ItemsHeader>
                     <InfoBar
-                             BorderThickness="0"
-                             CornerRadius="0"
-                             IsIconVisible="False"
-                             IsOpen="True"
-                             IsClosable="False"
-                             Severity="Informational"
-                             Margin="-17,0,0,0">
+                        BorderThickness="0"
+                        CornerRadius="0"
+                        IsIconVisible="False"
+                        IsOpen="True"
+                        IsClosable="False"
+                        Severity="Informational"
+                        Margin="-17,0,0,0">
                         <Grid Margin="5"
                               ColumnSpacing="5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            
+
                             <Image Source="ms-appx:///Assets/TouchpadThreeFingerSettings.png"
                                    Grid.Column="0"
-                                   VerticalAlignment="Top"/>
+                                   VerticalAlignment="Top" />
                             <Image Source="ms-appx:///Assets/TouchpadTapsSettings.png"
                                    Grid.Column="1"
-                                   VerticalAlignment="Top"/>
+                                   VerticalAlignment="Top" />
                         </Grid>
                     </InfoBar>
                 </wuc:SettingsExpander.ItemsHeader>
@@ -94,18 +94,18 @@
                 <wuc:SettingsExpander.Items>
                     <!-- content is an alignment of a numberbox and a slider  in a horizontal box -->
                     <wuc:SettingsCard Header="Mouse speed"
-                                        Description="Default to 30"
+                                      Description="Default to 30"
                                       IsEnabled="{Binding ElementName=CursorMove, Path=IsOn}">
-                        
+
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="10">
                             <Slider MinWidth="200"
                                     StepFrequency="1"
                                     Maximum="200"
                                     Minimum="1"
                                     Value="{x:Bind CursorSpeedProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            
+
                             <NumberBox MinWidth="60"
-                                       Value="{x:Bind CursorSpeedProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                       Value="{x:Bind CursorSpeedProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Maximum="100000"
                                        Minimum="0"
                                        SmallChange="5"
@@ -122,9 +122,9 @@
                                     Maximum="30"
                                     Minimum="0"
                                     Value="{x:Bind CursorAccelerationProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            
+
                             <NumberBox MinWidth="60"
-                                       Value="{x:Bind CursorAccelerationProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                       Value="{x:Bind CursorAccelerationProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Minimum="0"
                                        Maximum="1000"
                                        SmallChange="5"

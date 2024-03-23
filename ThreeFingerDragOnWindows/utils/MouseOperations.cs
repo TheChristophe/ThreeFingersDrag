@@ -3,7 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace ThreeFingerDragOnWindows.utils;
 
-public class MouseOperations {
+public class MouseOperations
+{
     private const int INPUT_MOUSE = 0;
     private const int MOUSEEVENTF_MOVE = 0x0001;
     public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
@@ -22,25 +23,28 @@ public class MouseOperations {
     private static extern bool GetCursorPos(out IntMousePoint lpFIntMousePoint);
 
 
-    public static IntMousePoint GetCursorPosition(){
+    public static IntMousePoint GetCursorPosition()
+    {
         IntMousePoint currentIntMousePoint;
         var gotPoint = GetCursorPos(out currentIntMousePoint);
-        if(!gotPoint) currentIntMousePoint = new IntMousePoint(0, 0);
+        if (!gotPoint) currentIntMousePoint = new IntMousePoint(0, 0);
         return currentIntMousePoint;
     }
 
-    public static void ShiftCursorPosition(float x, float y){
-        var intX = (int) (x + _decimalX);
-        var intY = (int) (y + _decimalY);
+    public static void ShiftCursorPosition(float x, float y)
+    {
+        var intX = (int)(x + _decimalX);
+        var intY = (int)(y + _decimalY);
         _decimalX = x + _decimalX - intX;
         _decimalY = y + _decimalY - intY;
 
         MoveMouse(intX, intY);
     }
 
-    public static void SetCursorPosition(float x, float y){
-        var intX = (int) (x + _decimalX);
-        var intY = (int) (y + _decimalY);
+    public static void SetCursorPosition(float x, float y)
+    {
+        var intX = (int)(x + _decimalX);
+        var intY = (int)(y + _decimalY);
         _decimalX = x + _decimalX - intX;
         _decimalY = y + _decimalY - intY;
         var point = GetCursorPosition();
@@ -51,7 +55,8 @@ public class MouseOperations {
     [DllImport("user32.dll", SetLastError = true)]
     private static extern uint SendInput(uint nInputs, Input[] pInputs, int cbSize);
 
-    private static void MoveMouse(int dx, int dy){
+    private static void MoveMouse(int dx, int dy)
+    {
         var input = new Input[1];
         input[0].type = INPUT_MOUSE;
         input[0].mi.dx = dx;
@@ -59,28 +64,31 @@ public class MouseOperations {
         input[0].mi.dwFlags = MOUSEEVENTF_MOVE;
 
         var result = SendInput(1, input, Marshal.SizeOf(typeof(Input)));
-        if(result == 0) Console.WriteLine("Failed to move the mouse. Error code: " + Marshal.GetLastWin32Error());
+        if (result == 0) Console.WriteLine("Failed to move the mouse. Error code: " + Marshal.GetLastWin32Error());
     }
 
-    public static void MouseClick(int mouseEventFlag){
+    public static void MouseClick(int mouseEventFlag)
+    {
         var input = new Input[1];
         input[0].type = INPUT_MOUSE;
         input[0].mi.dwFlags = mouseEventFlag;
 
         var result = SendInput(1, input, Marshal.SizeOf(typeof(Input)));
 
-        if(result == 0) Console.WriteLine("Failed to send mouse click. Error code: " + Marshal.GetLastWin32Error());
+        if (result == 0) Console.WriteLine("Failed to send mouse click. Error code: " + Marshal.GetLastWin32Error());
     }
 
 
     [StructLayout(LayoutKind.Sequential)]
-    private struct Input {
+    private struct Input
+    {
         public int type;
         public MouseInput mi;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    private struct MouseInput {
+    private struct MouseInput
+    {
         public int dx;
         public int dy;
         public int mouseData;
@@ -90,11 +98,13 @@ public class MouseOperations {
     }
 }
 
-public struct IntMousePoint {
+public struct IntMousePoint
+{
     public int x;
     public int y;
 
-    public IntMousePoint(int x, int y){
+    public IntMousePoint(int x, int y)
+    {
         this.x = x;
         this.y = y;
     }

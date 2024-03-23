@@ -45,7 +45,8 @@
                     Description="This is useful if you use an external touchpad that is not always connected. Resource consumption is minimal."
                     HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE8EE;}"
                     IsExpanded="True">
-                    <ToggleSwitch x:Name="RegularTouchpadCheck" IsOn="{x:Bind RegularTouchpadCheckProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ToggleSwitch x:Name="RegularTouchpadCheck"
+                                  IsOn="{x:Bind RegularTouchpadCheckProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <wuc:SettingsExpander.Items>
                         <wuc:SettingsCard IsEnabled="{Binding ElementName=RegularTouchpadCheck, Path=IsOn}"
                                           Header="Update interval"
@@ -54,14 +55,14 @@
                                     StepFrequency="1"
                                     Maximum="60"
                                     Minimum="1"
-                                    Value="{x:Bind RegularTouchpadCheckIntervalProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    Value="{x:Bind RegularTouchpadCheckIntervalProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </wuc:SettingsCard>
-                            <wuc:SettingsCard IsEnabled="{Binding ElementName=RegularTouchpadCheck, Path=IsOn}"
-                                              Header="Update even if a touchpad is already registered"
-                                              Description="This can help is you use different external touchpads on the same computer.">
-                                <ToggleSwitch
-                                    IsOn="{x:Bind RegularTouchpadCheckEvenAlreadyRegisteredProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </wuc:SettingsCard>
+                        <wuc:SettingsCard IsEnabled="{Binding ElementName=RegularTouchpadCheck, Path=IsOn}"
+                                          Header="Update even if a touchpad is already registered"
+                                          Description="This can help is you use different external touchpads on the same computer.">
+                            <ToggleSwitch
+                                IsOn="{x:Bind RegularTouchpadCheckEvenAlreadyRegisteredProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </wuc:SettingsCard>
                     </wuc:SettingsExpander.Items>
 
                 </wuc:SettingsExpander>
